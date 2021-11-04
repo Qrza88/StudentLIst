@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class StudentApi {
     private List<Student> studentList;
 
@@ -25,4 +25,12 @@ public class StudentApi {
     public List<Student> getStudentList() {
         return studentList;
     }
+
+    @GetMapping("/{id}")
+    public Student getStudentById (@PathVariable int id){
+        return studentList.stream().filter(student ->student.getId() == id).findFirst().get();
+
+    }
+
 }
+
